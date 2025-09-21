@@ -76,11 +76,10 @@ export const DATA = {
       badges: [],
       location: 'Macedon, NY',
       title: 'Software Engineer',
-      logoUrl: '/mitremedia.png',
+      logoUrl: '/izzo.webp',
       start: 'September 2024',
       end: 'Present',
-      description:
-        'Designed and implemented a robust password encryption and browser cookie storage system in Ruby on Rails. Leveraged the Yahoo finance API to develop the dividend.com equity screener',
+      description: '',
     },
   ],
   education: [
@@ -88,7 +87,7 @@ export const DATA = {
       school: 'FreeCodeCamp',
       href: 'https://www.freecodecamp.org/certification/zachlippa/javascript-algorithms-and-data-structures',
       degree: 'JavaScript Algorithms and Data Structures Certification',
-      logoUrl: '/buildspace.jpg',
+      logoUrl: '',
       start: '2023',
       end: '2024',
     },
