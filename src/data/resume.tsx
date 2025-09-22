@@ -29,7 +29,7 @@ export const DATA = {
     { href: '/blog', icon: NotebookIcon, label: 'Blog' },
   ],
   contact: {
-    email: 'me@zachlippa.dev',
+    email: 'hello@zachlippa.dev',
     tel: '+123456789',
     social: {
       GitHub: {
@@ -61,10 +61,10 @@ export const DATA = {
       // },
       email: {
         name: 'Send Email',
-        url: 'mailto:me@zachlippa.dev',
+        url: 'mailto:hello@zachlippa.dev',
         icon: Icons.email,
 
-        navbar: false,
+        navbar: true,
       },
     },
   },
