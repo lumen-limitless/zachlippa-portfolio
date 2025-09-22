@@ -75,12 +75,12 @@ export const DATA = {
       href: 'https://izzo.com/',
       badges: [],
       location: 'Macedon, NY',
-      title: 'Full Stack Developer',
+      title: 'Full-Stack Developer',
       logoUrl: '/izzo.webp',
       start: 'September 2024',
       end: 'Present',
       description:
-        'Full Stack Software Developer specializing in enterprise integrations and modern web applications. Designed and deployed high-impact solutions including Shopify-Apprise bilateral integration, React-based mapping tools with AWS Lambda, and company-wide intranet application, drastically reducing operational costs and eliminating manual errors. Developed REST APIs, automated workflows with PowerShell scripting, and implemented critical infrastructure improvements including MFA rollout and firewall deployment. Successfully delivered 8+ large-scale projects utilizing React, AWS, API development, and cloud architecture to drive business efficiency and enhance user experience.',
+        'Full-Stack Software Developer specializing in enterprise integrations and modern web applications. Designed and deployed high-impact solutions including Shopify-Apprise bilateral integration, React-based mapping tools with AWS Lambda, and company-wide intranet application, drastically reducing operational costs and eliminating manual errors. Developed REST APIs, automated workflows with PowerShell scripting, and implemented critical infrastructure improvements including MFA rollout and firewall deployment. Successfully delivered 8+ large-scale projects utilizing React, AWS, API development, and cloud architecture to drive business efficiency and enhance user experience.',
     },
   ],
   education: [
