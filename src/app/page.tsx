@@ -1,3 +1,4 @@
+import CalEmbed from '@/components/cal';
 import { HackathonCard } from '@/components/hackathon-card';
 import BlurFade from '@/components/magicui/blur-fade';
 import BlurFadeText from '@/components/magicui/blur-fade-text';
@@ -206,16 +207,9 @@ export default function Page() {
                 Get in Touch
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me an email{' '}
-                <Link
-                  href={DATA.contact.email}
-                  className="text-blue-500 hover:underline"
-                >
-                  me@zachlippa.dev
-                </Link>{' '}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
+                Want to chat? Schedule some time on my calendar!
               </p>
+              <CalEmbed />
             </div>
           </BlurFade>
         </div>
