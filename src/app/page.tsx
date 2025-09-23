@@ -207,7 +207,11 @@ export default function Page() {
                 Get in Touch
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Schedule some time on my calendar!
+                Want to chat? Shoot me an email at{' '}
+                <a href={`mailto:${DATA.contact.email}`} className="underline">
+                  {DATA.contact.email}
+                </a>
+                , or schedule some time on my calendar!
               </p>
               <CalEmbed />
             </div>

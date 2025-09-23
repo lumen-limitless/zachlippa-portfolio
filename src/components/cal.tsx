@@ -29,6 +29,7 @@ export default function MyApp() {
       data-cal-origin="https://cal.lumenlimitless.com"
       data-cal-config='{"layout":"month_view"}'
       variant="outline"
+      size={'lg'}
     >
       <Calendar className="mr-2 h-4 w-4" />
       Schedule Time
