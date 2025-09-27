@@ -72,7 +72,7 @@ export const DATA = {
   work: [
     {
       company: 'Izzo Golf, Inc.',
-      href: 'https://izzo.com/',
+      href: 'https://dub.sh/dHEXAc4',
       badges: [],
       location: 'Macedon, NY',
       title: 'Full-Stack Developer',
