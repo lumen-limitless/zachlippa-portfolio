@@ -128,13 +128,7 @@ export const DATA = {
       active: true,
       description:
         'Designed, developed and deployed a landing page for a local business.',
-      technologies: [
-        'Next.js',
-        'Typescript',
-        'TailwindCSS',
-        'Figma',
-        'TailwindCSS',
-      ],
+      technologies: ['Next.js', 'Typescript', 'TailwindCSS', 'Figma'],
       links: [
         {
           type: 'Website',
