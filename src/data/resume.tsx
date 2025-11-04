@@ -8,8 +8,7 @@ export const DATA = {
   location: 'Rochester, NY',
   locationLink: 'https://www.google.com/maps/place/rochesterny',
   description: 'Software Engineer, Entrepreneur, and Web3 Enthusiast',
-  summary:
-    'Full-Stack Developer specializing in JavaScript, TypeScript, Rust, and Solidity, with expertise in blockchain technologies and modern web development. Passionate about helping all kinds of businesses streamline operations, boost engagement, and expand their digital presence through innovative solutions. Committed to staying at the forefront of new programming paradigms and tools to deliver transformative digital experiences. Enjoys an active lifestyle including hiking, gym workouts, traveling, and spending quality time with family.',
+  summary: `Full-Stack Developer specializes in utilizing cutting-edge technologies to architect, build, and enhance dynamic, user-focused websites and applications. Passionate about helping all kinds of businesses streamline operations, boost engagement, and expand their digital presence through innovative solutions. Committed to staying at the forefront of new programming paradigms and tools to deliver transformative digital experiences. Enjoys an active lifestyle including hiking, gym workouts, traveling, and spending quality time with family.`,
   avatarUrl: '/me.webp',
   skills: [
     'React',
