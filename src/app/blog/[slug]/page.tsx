@@ -1,38 +1,38 @@
-import { getBlogPosts, getPost } from '@/data/blog';
-import { DATA } from '@/data/resume';
-import { formatDate } from '@/lib/utils';
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { Suspense } from 'react';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import { getBlogPosts, getPost } from "@/data/blog";
+import { DATA } from "@/data/resume";
+import { formatDate } from "@/lib/utils";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata(
-  props: {
-    params: Promise<{
-      slug: string;
-    }>;
-  }
-): Promise<Metadata | undefined> {
+export async function generateMetadata(props: {
+  params: Promise<{
+    slug: string;
+  }>;
+}): Promise<Metadata | undefined> {
   const params = await props.params;
   let post;
   try {
     post = await getPost(params.slug);
   } catch (error) {
-    console.error('Error fetching post:', error);
+    console.error("Error fetching post:", error);
     notFound();
   }
 
-  let {
+  const {
     title,
     publishedAt: publishedTime,
     summary: description,
     image,
   } = post.metadata;
-  let ogImage = image ? `${DATA.url}${image}` : `${DATA.url}/og?title=${title}`;
+  const ogImage = image
+    ? `${DATA.url}${image}`
+    : `${DATA.url}/og?title=${title}`;
 
   return {
     title,
@@ -40,7 +40,7 @@ export async function generateMetadata(
     openGraph: {
       title,
       description,
-      type: 'article',
+      type: "article",
       publishedTime,
       url: `${DATA.url}/blog/${post.slug}`,
       images: [
@@ -50,7 +50,7 @@ export async function generateMetadata(
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title,
       description,
       images: [ogImage],
@@ -58,15 +58,13 @@ export async function generateMetadata(
   };
 }
 
-export default async function Blog(
-  props: {
-    params: Promise<{
-      slug: string;
-    }>;
-  }
-) {
+export default async function Blog(props: {
+  params: Promise<{
+    slug: string;
+  }>;
+}) {
   const params = await props.params;
-  let post = await getPost(params.slug);
+  const post = await getPost(params.slug);
 
   if (!post) {
     notFound();
@@ -75,12 +73,10 @@ export default async function Blog(
   return (
     <section id="blog">
       <script
-        type="application/ld+json"
-        suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'BlogPosting',
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
             headline: post.metadata.title,
             datePublished: post.metadata.publishedAt,
             dateModified: post.metadata.publishedAt,
@@ -90,18 +86,20 @@ export default async function Blog(
               : `${DATA.url}/og?title=${post.metadata.title}`,
             url: `${DATA.url}/blog/${post.slug}`,
             author: {
-              '@type': 'Person',
+              "@type": "Person",
               name: DATA.name,
             },
           }),
         }}
+        suppressHydrationWarning
+        type="application/ld+json"
       />
-      <h1 className="title font-medium text-2xl tracking-tighter max-w-[650px]">
+      <h1 className="title max-w-[650px] font-medium text-2xl tracking-tighter">
         {post.metadata.title}
       </h1>
-      <div className="flex justify-between items-center mt-2 mb-8 text-sm max-w-[650px]">
+      <div className="mt-2 mb-8 flex max-w-[650px] items-center justify-between text-sm">
         <Suspense fallback={<p className="h-5" />}>
-          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+          <p className="text-neutral-600 text-sm dark:text-neutral-400">
             {formatDate(post.metadata.publishedAt)}
           </p>
         </Suspense>
@@ -109,7 +107,7 @@ export default async function Blog(
       <article
         className="prose dark:prose-invert"
         dangerouslySetInnerHTML={{ __html: post.source }}
-      ></article>
+      />
     </section>
   );
 }
