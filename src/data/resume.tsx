@@ -97,7 +97,7 @@ export const DATA = {
   projects: [
     {
       title: "Explor3",
-      href: "https://www.explor3.io",
+      href: "https://explor3-app.vercel.app/influenc3",
       dates: "Jan 2024 - Sept 2024",
       active: true,
       description: "",
@@ -114,7 +114,7 @@ export const DATA = {
       links: [
         {
           type: "Website",
-          href: "https://www.explor3.io",
+          href: "https://explor3-app.vercel.app/influenc3",
           icon: <Icons.globe className="size-3" />,
         },
       ],
