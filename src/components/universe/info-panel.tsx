@@ -288,12 +288,14 @@ function ProjectsContent({ activeItem, accent, onItemHover }: ItemProps) {
             </p>
           ) : null}
           <div className="mt-3 flex flex-wrap gap-1">
-            {project.closedSource ? (
+            {project.org ? (
               <span
                 className="rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider"
                 style={{ borderColor: accent, color: accent }}
               >
-                {project.org} · Closed source
+                {project.closedSource
+                  ? `${project.org} · Closed source`
+                  : project.org}
               </span>
             ) : null}
             {project.technologies.map((tech) => (

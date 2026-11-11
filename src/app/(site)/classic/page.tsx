@@ -61,10 +61,7 @@ export default function Page() {
             <h2 className="font-bold text-xl">Work Experience</h2>
           </BlurFade>
           {DATA.work.map((work, id) => (
-            <BlurFade
-              delay={BLUR_FADE_DELAY * 6 + id * 0.05}
-              key={work.title}
-            >
+            <BlurFade delay={BLUR_FADE_DELAY * 6 + id * 0.05} key={work.title}>
               <ResumeCard
                 altText={work.company}
                 badges={work.badges}
@@ -131,8 +128,8 @@ export default function Page() {
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Production systems built at IZZO Golf, described here as
-                  closed-source case studies, alongside personal and client
-                  work.
+                  closed-source case studies, alongside products and experiments
+                  from my own company, Lumen Limitless.
                 </p>
               </div>
             </div>
