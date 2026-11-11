@@ -1,0 +1,64 @@
+---
+title: "AI Projects Fail on Operations Before They Fail on Models"
+publishedAt: "2026-11-11"
+summary: "What two years of putting agents and LLM workflows in front of a real ERP taught me about where these projects actually break."
+---
+
+Most conversations about AI at work are about the model. Which one, how smart, how expensive. After two years of putting agents and LLM workflows in front of a real ERP, real invoices, and real customers, I have come to think that is rarely where a project succeeds or fails.
+
+The model is usually good enough. What breaks is everything around it: a write that runs twice, an automation tied to one person's login, an agent quietly doing arithmetic it should never have been asked to do. None of that shows up in a demo. All of it shows up in production.
+
+Here are the habits that have mattered most.
+
+## Let the model read, and let code decide
+
+The most useful rule I have is to keep the model on the part of the job that is actually fuzzy.
+
+Our invoice pipeline is a good example. A vendor invoice arrives as a PDF, and no two vendors lay theirs out the same way. Reading that is a language problem, so a model does it. But matching the invoice against the purchase order and the receipt is not a language problem. It is a comparison, with a right answer, and it runs as ordinary code against live ERP data. The model never decides whether an invoice is approved. It extracts, the code matches, and only the mismatches go to a person.
+
+I rebuilt a daily pricing report around the same idea. In the first version the model compared the numbers and wrote the summary. In the second, the comparisons are calculated in code and the model only describes the result. The summaries got more accurate, and when one is wrong I can now tell which half to fix.
+
+A model that is right 98% of the time is impressive in a chat window and unacceptable in accounts payable. Give it the reading. Keep the deciding.
+
+## Put one door in front of the system of record
+
+Once you have more than one automation, each of them wants to talk to your ERP in its own way. That is how you end up with five integrations, five sets of credentials, and no single place to answer "what changed this record, and why?"
+
+I put one service in front of ours: a stateless bridge that every workflow and every agent has to go through. Reads are simple. Writes pass through a fixed pipeline: an idempotency check so a retry cannot create a duplicate, validation, an approval step, the commit, and an entry in an append-only audit log.
+
+It is not glamorous work, and it took longer than any agent I have built. But it means a new agent inherits safe writes on day one, and the question "could this thing corrupt our data?" has one answer in one place instead of a new answer per project.
+
+## Give every agent the same tools
+
+The same logic applies one level up. Our chat agent and our voice agent both need to look up an order, check stock, and open a ticket. Building those tools once, on a shared server, means a fix lands everywhere at once and both agents fail in the same predictable way.
+
+It also gives you one place to enforce the rule that matters most with customer-facing agents: an order lookup has to prove who is asking before it returns anything. That check belongs in the tool, not in a prompt asking the model to be careful.
+
+## Assume it will break while you are asleep
+
+Unattended is the whole point of automation, and it is also the risk. A workflow that fails loudly is an inconvenience. One that fails silently is a backlog you discover three weeks later.
+
+A few things I now do by default:
+
+- **Health checks on a schedule.** The bridge and the ERP connection are tested every 15 minutes, and a failure raises an alert.
+- **Standard failure responses.** When a backend is down, every tool returns the same shaped error, so an agent can tell a customer something honest instead of improvising.
+- **Service identities, not people.** Early on, automations ran under a personal admin account. That works until someone changes a password or goes on leave. Everything now authenticates as a dedicated service identity.
+- **A human path for exceptions.** Every workflow has a defined place for the cases it cannot handle, and a named person who receives them.
+
+## Check whether you need an agent at all
+
+Before building a support agent, I went through a year of support tickets by intent. A large share of the volume turned out to be a single request, already answered with one canned reply. The right fix for that was a simpler form, not a smarter agent.
+
+That is the least exciting conclusion you can bring to a meeting about AI, and it is often the correct one. An agent is the right tool when the input is unpredictable and the cost of a wrong answer is manageable. When the input is predictable, a form or a workflow is cheaper, faster, and easier to trust.
+
+## Measure it like any other system
+
+When the support agent launched, it launched as a pilot with a fixed length and metrics agreed in advance: how many conversations it resolves, how many it hands off, and why. A weekly report built from real transcripts tracks those numbers and shows where the knowledge base is thin.
+
+Without that, "is the AI working?" becomes a matter of opinion, and opinion tends to follow the last bad conversation someone saw.
+
+## The short version
+
+None of this is specific to AI. Idempotency, validation, audit trails, monitoring, and a clear owner for exceptions are what any system needs before it is allowed near money or customers. The difference is that with AI it is tempting to skip them, because the demo already works.
+
+The model will keep getting better on its own. The operational discipline is the part you have to build.
