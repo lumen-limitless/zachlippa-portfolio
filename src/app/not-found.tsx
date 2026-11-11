@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <main className="flex min-h-[100dvh] flex-col items-center space-y-8">
+    <main className="mx-auto flex min-h-[100dvh] max-w-2xl flex-col items-center space-y-8 px-6 py-12 sm:py-24">
       <div className="flex flex-col items-center space-y-6 text-center">
         <BlurFadeText
           className="text-center font-bold text-6xl text-muted-foreground tracking-tighter"

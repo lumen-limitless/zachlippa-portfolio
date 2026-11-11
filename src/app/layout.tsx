@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -87,15 +86,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "mx-auto min-h-screen max-w-2xl bg-background px-6 py-12 font-sans antialiased sm:py-24",
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
-          <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
-          </TooltipProvider>
+          <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
         </ThemeProvider>
         <Analytics />
       </body>
