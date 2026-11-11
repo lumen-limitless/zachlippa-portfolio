@@ -18,6 +18,7 @@ interface ResumeCardProps {
   badges?: readonly string[];
   period: string;
   description?: string;
+  highlights?: readonly string[];
 }
 export const ResumeCard = ({
   logoUrl,
@@ -28,6 +29,7 @@ export const ResumeCard = ({
   badges,
   period,
   description,
+  highlights,
 }: ResumeCardProps) => {
   const [isExpanded, setIsExpanded] = React.useState(false);
 
@@ -101,6 +103,13 @@ export const ResumeCard = ({
               }}
             >
               {description}
+              {highlights && highlights.length > 0 && (
+                <ul className="mt-2 list-disc space-y-1 pl-4">
+                  {highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              )}
             </motion.div>
           )}
         </div>

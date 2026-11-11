@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
-import Navbar from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DATA } from "@/data/resume";
@@ -23,31 +22,24 @@ export const metadata: Metadata = {
   keywords: [
     "Zach Lippa",
     "Zachary Lippa",
-    "Full-Stack Developer",
     "Software Engineer",
     "Portfolio",
-    "JavaScript",
+    "AI Engineer",
+    "Solutions Architect",
+    "AI Agents",
+    "MCP",
+    "ERP Integration",
+    "Automation",
+    "n8n",
+    "Azure",
+    "AWS",
     "TypeScript",
+    "Python",
     "React",
-    "Node.js",
     "Next.js",
-    "GraphQL",
-    "CSS",
-    "HTML",
-    "Web Development",
-    "Programming",
-    "Tech Blog",
+    "Node.js",
+    "PostgreSQL",
     "Rochester, NY",
-    "Open Source",
-    "Tech Enthusiast",
-    "Coding",
-    "Development",
-    "Software Development",
-    "Frontend",
-    "Backend",
-    "Web Applications",
-    "Tech Portfolio",
-    "Developer Blog",
   ],
   openGraph: {
     title: `${DATA.name}`,
@@ -87,15 +79,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "mx-auto min-h-screen max-w-2xl bg-background px-6 py-12 font-sans antialiased sm:py-24",
+          "min-h-screen bg-background font-sans antialiased",
           fontSans.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="light">
-          <TooltipProvider delayDuration={0}>
-            {children}
-            <Navbar />
-          </TooltipProvider>
+          <TooltipProvider delayDuration={0}>{children}</TooltipProvider>
         </ThemeProvider>
         <Analytics />
       </body>
