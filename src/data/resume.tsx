@@ -7,23 +7,28 @@ export const DATA = {
   url: "https://zachlippa.dev",
   location: "Rochester, NY",
   locationLink: "https://www.google.com/maps/place/rochesterny",
-  description: "Software Engineer, Entrepreneur, and Web3 Enthusiast",
+  description:
+    "Software Engineer building production AI agents, ERP integrations, and cloud infrastructure",
   summary:
-    "Full-Stack Developer specializes in utilizing cutting-edge technologies to architect, build, and enhance dynamic, user-focused websites and applications. Passionate about helping all kinds of businesses streamline operations, boost engagement, and expand their digital presence through innovative solutions. Committed to staying at the forefront of new programming paradigms and tools to deliver transformative digital experiences. Enjoys an active lifestyle including hiking, gym workouts, traveling, and spending quality time with family.",
+    "I build production AI and automation systems that run unattended against real systems of record.\n\nOver the past two years at IZZO Golf I have designed and shipped an AI agent handling front-line customer support, an invoice pipeline that reads vendor PDFs with an LLM and three-way matches them against the ERP, and a REST and MCP bridge that is now the single validation, write-safety, and audit chokepoint for every agent and workflow touching that ERP. I also own the infrastructure they run on: a dual-cloud environment across Azure and AWS, and a full endpoint fleet migration from on-premises Active Directory to Entra ID.\n\nMost of what makes these systems work is unglamorous: idempotency, validation gates, audit trails, and knowing when a deterministic workflow is a better answer than an agent. In my experience, AI projects fail on operational discipline well before model quality becomes the limiting factor.\n\nOutside of work I enjoy hiking, the gym, traveling, and time with family.",
   avatarUrl: "/me.webp",
   skills: [
+    "TypeScript",
+    "Python",
     "React",
     "Next.js",
-    "Typescript",
-    "TailwindCSS",
     "Node.js",
-    "Python",
-    "Rust",
-    "Postgres",
-    "Docker",
+    "PostgreSQL",
+    "AI Agents",
+    "MCP",
+    "n8n",
+    "Azure",
     "AWS",
+    "Docker",
+    "Entra ID",
+    "PowerShell",
+    "Rust",
     "Solidity",
-    "Foundry",
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
@@ -76,12 +81,39 @@ export const DATA = {
       href: "https://dub.sh/dHEXAc4",
       badges: [],
       location: "Macedon, NY",
-      title: "Full-Stack Developer",
+      title: "Senior Programmer Analyst",
       logoUrl: "/izzo.webp",
-      start: "September 2024",
+      start: "June 2026",
       end: "Present",
       description:
-        "Full-Stack Software Developer specializing in enterprise integrations and modern web applications. Designed and deployed high-impact solutions including Shopify-Apprise bilateral integration, React-based mapping tools with AWS Lambda, and company-wide intranet application, drastically reducing operational costs and eliminating manual errors. Developed REST APIs, automated workflows with PowerShell scripting, and implemented critical infrastructure improvements including MFA rollout and firewall deployment. Successfully delivered 8+ large-scale projects utilizing React, AWS, API development, and cloud architecture to drive business efficiency and enhance user experience.",
+        "Lead architect and developer for custom in-house applications across IZZO Golf and affiliated brands. I own the stack end to end, from cloud infrastructure to production AI systems.",
+      highlights: [
+        "Built and deployed an AI customer support agent on izzo.com, running a structured pilot with defined containment and escalation metrics",
+        "Designed an invoice pipeline that extracts data from vendor PDFs with an LLM and three-way matches it against the ERP, routing only exceptions to a person",
+        "Architected a stateless REST and MCP adapter over a legacy SOAP ERP API, centralizing write-safety, validation, and audit for every automated system that touches the ERP",
+        "Operate a dual-cloud environment across Azure (Container Apps, PostgreSQL Flexible Server, Key Vault) and AWS (Lambda, ECS, Bedrock, Route 53)",
+        "Self-host and administer the n8n automation platform running scheduled and event-driven workflows across finance, purchasing, and IT",
+      ],
+    },
+    {
+      company: "Izzo Golf, Inc.",
+      href: "https://dub.sh/dHEXAc4",
+      badges: [],
+      location: "Macedon, NY",
+      title: "IT Support Specialist",
+      logoUrl: "/izzo.webp",
+      start: "September 2024",
+      end: "June 2026",
+      description:
+        "Hired into IT support and progressively took on software development and infrastructure architecture, leading to promotion to Senior Programmer Analyst.",
+      highlights: [
+        "Designed and deployed a bilateral Shopify to ERP integration that automated order entry and updates, removing manual re-keying and the errors that came with it",
+        "Rebuilt the Swami GPS mapping tool in React on AWS Lambda, modernizing the user experience while reducing operating cost",
+        "Built an internal intranet application for task tracking, support tickets, employee requests, and door access",
+        "Led migration of the full endpoint fleet from on-premises Active Directory to Microsoft Entra ID",
+        "Spearheaded the company-wide MFA rollout, authoring SOPs and building PowerShell reporting for rollout visibility",
+        "Led the server room UPS replacement, which cut downtime by 60%",
+      ],
     },
   ],
   education: [
@@ -96,11 +128,144 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "ERP REST + MCP Bridge",
+      href: "",
+      dates: "Jun 2026 - Present",
+      active: true,
+      org: "Izzo Golf",
+      closedSource: true,
+      metric: {
+        value: "22+",
+        label: "read operations across 9 business areas",
+      },
+      description:
+        "A stateless REST and MCP adapter in front of a legacy SOAP ERP API, giving workflows and AI agents one safe, audited way to read and write ERP data. Every write passes through idempotency, validation, approval, and commit stages and lands in an append-only PostgreSQL audit log. Ships through a GitHub Actions pipeline and is health-checked every 15 minutes.",
+      technologies: ["REST", "MCP", "SOAP", "PostgreSQL", "GitHub Actions"],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
+      title: "AI Customer Support Agent",
+      href: "",
+      dates: "Aug 2026 - Present",
+      active: true,
+      org: "Izzo Golf",
+      closedSource: true,
+      metric: {
+        value: "90-day",
+        label: "structured pilot with containment and escalation metrics",
+      },
+      description:
+        "Replaced the legacy izzo.com chatbot with an AI agent that answers product, troubleshooting, and warranty questions, looks up order status, checks stock and golf course availability, and hands off to a person when needed. Launched as a structured pilot, with a weekly report built from real transcripts that tracks outcomes, escalation reasons, and knowledge gaps.",
+      technologies: ["Zendesk", "MCP", "Shopify", "n8n", "Notion"],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Shared Agent Tool Platform",
+      href: "",
+      dates: "Sep 2026",
+      active: true,
+      org: "Izzo Golf",
+      closedSource: true,
+      metric: { value: "1", label: "tool server behind every agent" },
+      description:
+        "One MCP tool server shared by the chat agent, a voice agent, and any future agent, so each one uses the same tested tools: order lookup, stock checks, course search, and ticket creation. Identity checks keep order lookups from exposing customer data, and backend failures return a standard response and raise an alert.",
+      technologies: ["MCP", "Retell", "Zendesk", "Shopify"],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
+      title: "AP Invoice Automation",
+      href: "",
+      dates: "Aug 2026 - Present",
+      active: true,
+      org: "Izzo Golf",
+      closedSource: true,
+      metric: {
+        value: "3-way",
+        label: "match against live ERP purchase orders",
+      },
+      description:
+        "A workflow that reads vendor invoice PDFs with an LLM, three-way matches them against live purchase orders through the ERP bridge, generates the voucher import file for accounts payable, files the PDF, and escalates only the mismatches. Later extended to invoices with no purchase order, using per-supplier GL coding held in PostgreSQL.",
+      technologies: [
+        "n8n",
+        "Claude",
+        "AWS Bedrock",
+        "PostgreSQL",
+        "SharePoint",
+      ],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
+      title: "PromoStandards Inventory API",
+      href: "",
+      dates: "Oct 2026",
+      active: true,
+      org: "Izzo Golf",
+      closedSource: true,
+      metric: { value: "45x", label: "faster inventory lookups" },
+      description:
+        "A PromoStandards 2.0 inventory SOAP API that lets distributors pull product and stock data straight from the ERP in real time. Reworking the query to look up each product individually, instead of reading the whole catalog, cut a call from about 7.9 seconds to under 200 milliseconds.",
+      technologies: ["SOAP", "PromoStandards", "ERP Integration"],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Swami GPS Course Tools",
+      href: "",
+      dates: "Jan 2025 - Aug 2026",
+      active: true,
+      org: "Izzo Golf",
+      closedSource: true,
+      metric: null,
+      description:
+        "Rebuilt the mapping tool for Swami GPS units in React on AWS Lambda, then added a job-based publishing pipeline for course data: an update API and dashboard with a diff preview before commit, a verification gate before publishing, and a byte-level regression harness for the binary encoder.",
+      technologies: ["React", "AWS Lambda", "S3"],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Cloud and Identity Migration",
+      href: "",
+      dates: "Mar 2026 - Sep 2026",
+      active: true,
+      org: "Izzo Golf",
+      closedSource: true,
+      metric: {
+        value: "30%",
+        label: "average reduction in monthly Azure spend",
+      },
+      description:
+        "Moved every endpoint from on-premises Active Directory to cloud-only Entra ID, retired the domain controllers, and rebuilt device policy in Intune. Migrated the company intranet to Azure Container Apps with a GitHub Actions deploy pipeline, then ran a cost review that removed unused and duplicate resources.",
+      technologies: [
+        "Entra ID",
+        "Intune",
+        "Azure Container Apps",
+        "PostgreSQL",
+        "GitHub Actions",
+      ],
+      links: [],
+      image: "",
+      video: "",
+    },
+    {
       title: "Explor3",
       href: "https://explor3-app.vercel.app/influenc3",
       dates: "Jan 2024 - Sept 2024",
       active: true,
-      description: "",
+      org: "",
+      closedSource: false,
+      metric: null,
+      description:
+        "A Web3 community platform for recognizing and supporting the most active members of a community.",
       technologies: [
         "Next.js",
         "Typescript",
@@ -126,6 +291,9 @@ export const DATA = {
       href: "https://www.swervinsfabhaus.com",
       dates: "June 2025 - July 2025",
       active: true,
+      org: "",
+      closedSource: false,
+      metric: null,
       description:
         "Designed, developed and deployed a landing page for a local business.",
       technologies: ["Next.js", "Typescript", "TailwindCSS", "Figma"],
@@ -138,391 +306,6 @@ export const DATA = {
       ],
       image: "/swervin.png",
       video: "",
-    },
-  ],
-  hackathons: [
-    {
-      title: "Hack Western 5",
-      dates: "November 23rd - 25th, 2018",
-      location: "London, Ontario",
-      description:
-        "Developed a mobile application which delivered bedtime stories to children using augmented reality.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/hack-western.png",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
-      links: [],
-    },
-    {
-      title: "Hack The North",
-      dates: "September 14th - 16th, 2018",
-      location: "Waterloo, Ontario",
-      description:
-        "Developed a mobile application which delivers university campus wide events in real time to all students.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/hack-the-north.png",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
-      links: [],
-    },
-    {
-      title: "FirstNet Public Safety Hackathon",
-      dates: "March 23rd - 24th, 2018",
-      location: "San Francisco, California",
-      description:
-        "Developed a mobile application which communcicates a victims medical data from inside an ambulance to doctors at hospital.",
-      icon: "public",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/firstnet.png",
-      links: [],
-    },
-    {
-      title: "DeveloperWeek Hackathon",
-      dates: "February 3rd - 4th, 2018",
-      location: "San Francisco, California",
-      description:
-        "Developed a web application which aggregates social media data regarding cryptocurrencies and predicts future prices.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/developer-week.jpg",
-      links: [
-        {
-          title: "Github",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/cryptotrends/cryptotrends",
-        },
-      ],
-    },
-    {
-      title: "HackDavis",
-      dates: "January 20th - 21st, 2018",
-      location: "Davis, California",
-      description:
-        "Developed a mobile application which allocates a daily carbon emission allowance to users to move towards a sustainable environment.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/hack-davis.png",
-      win: "Best Data Hack",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2018/white.svg",
-      links: [
-        {
-          title: "Devpost",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://devpost.com/software/my6footprint",
-        },
-        {
-          title: "ML",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/Wallet6/my6footprint-machine-learning",
-        },
-        {
-          title: "iOS",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/Wallet6/CarbonWallet",
-        },
-        {
-          title: "Server",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/Wallet6/wallet6-server",
-        },
-      ],
-    },
-    {
-      title: "ETH Waterloo",
-      dates: "October 13th - 15th, 2017",
-      location: "Waterloo, Ontario",
-      description:
-        "Developed a blockchain application for doctors and pharmacists to perform trustless transactions and prevent overdosage in patients.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/eth-waterloo.png",
-      links: [
-        {
-          title: "Organization",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/ethdocnet",
-        },
-      ],
-    },
-    {
-      title: "Hack The North",
-      dates: "September 15th - 17th, 2017",
-      location: "Waterloo, Ontario",
-      description:
-        "Developed a virtual reality application allowing users to see themselves in third person.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/hack-the-north.png",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.svg",
-      links: [
-        {
-          title: "Streamer Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/justinmichaud/htn2017",
-        },
-        {
-          title: "Client Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/dillionverma/RTSPClient",
-        },
-      ],
-    },
-    {
-      title: "Hack The 6ix",
-      dates: "August 26th - 27th, 2017",
-      location: "Toronto, Ontario",
-      description:
-        "Developed an open platform for people shipping items to same place to combine shipping costs and save money.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/hack-the-6ix.jpg",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.svg",
-      links: [
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/ShareShip/ShareShip",
-        },
-        {
-          title: "Site",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://share-ship.herokuapp.com/",
-        },
-      ],
-    },
-    {
-      title: "Stupid Hack Toronto",
-      dates: "July 23rd, 2017",
-      location: "Toronto, Ontario",
-      description:
-        "Developed a chrome extension which tracks which facebook profiles you have visited and immediately texts your girlfriend if you visited another girls page.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/stupid-hackathon.png",
-      links: [
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/nsagirlfriend/nsagirlfriend",
-        },
-      ],
-    },
-    {
-      title: "Global AI Hackathon - Toronto",
-      dates: "June 23rd - 25th, 2017",
-      location: "Toronto, Ontario",
-      description:
-        "Developed a python library which can be imported to any python game and change difficulty of the game based on real time emotion of player. Uses OpenCV and webcam for facial recognition, and a custom Machine Learning Model trained on a [Kaggle Emotion Dataset](https://www.kaggle.com/c/challenges-in-representation-learning-facial-expression-recognition-challenge/leaderboard) using [Tensorflow](https://www.tensorflow.org/Tensorflow) and [Keras](https://keras.io/). This project recieved 1st place prize at the Global AI Hackathon - Toronto and was also invited to demo at [NextAI Canada](https://www.nextcanada.com/next-ai).",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/global-ai-hackathon.jpg",
-      win: "1st Place Winner",
-      links: [
-        {
-          title: "Article",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://syncedreview.com/2017/06/26/global-ai-hackathon-in-toronto/",
-        },
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/TinySamosas/",
-        },
-      ],
-    },
-    {
-      title: "McGill AI for Social Innovation Hackathon",
-      dates: "June 17th - 18th, 2017",
-      location: "Montreal, Quebec",
-      description:
-        "Developed realtime facial microexpression analyzer using AI",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/ai-for-social-good.jpg",
-      links: [],
-    },
-    {
-      title: "Open Source Circular Economy Days Hackathon",
-      dates: "June 10th, 2017",
-      location: "Toronto, Ontario",
-      description:
-        "Developed a custom admin interface for food waste startup <a href='http://genecis.co/'>Genecis</a> to manage their data and provide analytics.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/open-source-circular-economy-days.jpg",
-      win: "1st Place Winner",
-      links: [
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/dillionverma/genecis",
-        },
-      ],
-    },
-    {
-      title: "Make School's Student App Competition 2017",
-      dates: "May 19th - 21st, 2017",
-      location: "International",
-      description: "Improved PocketDoc and submitted to online competition",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/make-school-hackathon.png",
-      win: "Top 10 Finalist | Honourable Mention",
-      links: [
-        {
-          title: "Medium Article",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://medium.com/make-school/the-winners-of-make-schools-student-app-competition-2017-a6b0e72f190a",
-        },
-        {
-          title: "Devpost",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://devpost.com/software/pocketdoc-react-native",
-        },
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://www.youtube.com/watch?v=XwFdn5Rmx68",
-        },
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/dillionverma/pocketdoc-react-native",
-        },
-      ],
-    },
-    {
-      title: "HackMining",
-      dates: "May 12th - 14th, 2017",
-      location: "Toronto, Ontario",
-      description: "Developed neural network to optimize a mining process",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/hack-mining.png",
-      links: [],
-    },
-    {
-      title: "Waterloo Equithon",
-      dates: "May 5th - 7th, 2017",
-      location: "Waterloo, Ontario",
-      description:
-        "Developed Pocketdoc, an app in which you take a picture of a physical wound, and the app returns common solutions or cures to the injuries or diseases.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/waterloo-equithon.png",
-      links: [
-        {
-          title: "Devpost",
-          icon: <Icons.globe className="h-4 w-4" />,
-          href: "https://devpost.com/software/pocketdoc-react-native",
-        },
-        {
-          title: "YouTube",
-          icon: <Icons.youtube className="h-4 w-4" />,
-          href: "https://www.youtube.com/watch?v=XwFdn5Rmx68",
-        },
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/dillionverma/pocketdoc-react-native",
-        },
-      ],
-    },
-    {
-      title: "SpaceApps Waterloo",
-      dates: "April 28th - 30th, 2017",
-      location: "Waterloo, Ontario",
-      description:
-        "Developed Earthwatch, a web application which allows users in a plane to virtually see important points of interest about the world below them. They can even choose to fly away from their route and then fly back if they choose. Special thanks to CesiumJS for providing open source world and plane models.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/space-apps.png",
-      links: [
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/dillionverma/earthwatch",
-        },
-      ],
-    },
-    {
-      title: "MHacks 9",
-      dates: "March 24th - 26th, 2017",
-      location: "Ann Arbor, Michigan",
-      description:
-        "Developed Super Graphic Air Traffic, a VR website made to introduce people to the world of air traffic controlling. This project was built completely using THREE.js as well as a node backend server.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/mhacks-9.png",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.svg",
-      links: [
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/dillionverma/threejs-planes",
-        },
-      ],
-    },
-    {
-      title: "StartHacks I",
-      dates: "March 4th - 5th, 2017",
-      location: "Waterloo, Ontario",
-      description:
-        "Developed at StartHacks 2017, Recipic is a mobile app which allows you to take pictures of ingredients around your house, and it will recognize those ingredients using ClarifAI image recognition API and return possible recipes to make. Recipic recieved 1st place at the hackathon for best pitch and hack.",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/starthacks.png",
-      win: "1st Place Winner",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.svg",
-      links: [
-        {
-          title: "Source (Mobile)",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/mattBlackDesign/recipic-ionic",
-        },
-        {
-          title: "Source (Server)",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/mattBlackDesign/recipic-rails",
-        },
-      ],
-    },
-    {
-      title: "QHacks II",
-      dates: "February 3rd - 5th, 2017",
-      location: "Kingston, Ontario",
-      description:
-        "Developed a mobile game which enables city-wide manhunt with random lobbies",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/qhacks.png",
-      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2017/white.svg",
-      links: [
-        {
-          title: "Source (Mobile)",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/dillionverma/human-huntr-react-native",
-        },
-        {
-          title: "Source (API)",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/mattBlackDesign/human-huntr-rails",
-        },
-      ],
-    },
-    {
-      title: "Terrible Hacks V",
-      dates: "November 26th, 2016",
-      location: "Waterloo, Ontario",
-      description:
-        "Developed a mock of Windows 11 with interesting notifications and functionality",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/terrible-hacks-v.png",
-      links: [
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/justinmichaud/TerribleHacks2016-Windows11",
-        },
-      ],
-    },
-    {
-      title: "Portal Hackathon",
-      dates: "October 29, 2016",
-      location: "Kingston, Ontario",
-      description:
-        "Developed an internal widget for uploading assignments using Waterloo's portal app",
-      image:
-        "https://pub-83c5db439b40468498f97946200806f7.r2.dev/hackline/portal-hackathon.png",
-      links: [
-        {
-          title: "Source",
-          icon: <Icons.github className="h-4 w-4" />,
-          href: "https://github.com/UWPortalSDK/crowmark",
-        },
-      ],
     },
   ],
 } as const;

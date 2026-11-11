@@ -30,7 +30,7 @@ export default async function Page() {
         <p>{DATA.summary}</p>
         <h2>Work Experience</h2>
         {DATA.work.map((work) => (
-          <article key={work.company}>
+          <article key={work.title}>
             <h3>
               {work.title}, {work.company}
             </h3>
@@ -38,6 +38,11 @@ export default async function Page() {
               {work.start} to {work.end ?? "Present"}, {work.location}
             </p>
             <p>{work.description}</p>
+            <ul>
+              {work.highlights.map((highlight) => (
+                <li key={highlight}>{highlight}</li>
+              ))}
+            </ul>
           </article>
         ))}
         <h2>Skills</h2>

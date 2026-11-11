@@ -110,7 +110,7 @@ function AboutContent() {
           </a>
         </div>
       </div>
-      <p className="text-pretty text-sm text-white/75 leading-relaxed">
+      <p className="whitespace-pre-line text-pretty text-sm text-white/75 leading-relaxed">
         {DATA.summary}
       </p>
       <SocialLinks />
@@ -129,7 +129,7 @@ function ExperienceContent({ activeItem, accent, onItemHover }: ItemProps) {
         <ItemCard
           accent={accent}
           active={activeItem === index}
-          key={work.company}
+          key={work.title}
           onHover={(hovered) => onItemHover(hovered ? index : null)}
         >
           <div className="flex items-start gap-3">
@@ -147,10 +147,10 @@ function ExperienceContent({ activeItem, accent, onItemHover }: ItemProps) {
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                {work.company}
+                {work.title}
                 <ArrowUpRight className="size-3.5 opacity-50 transition-opacity group-hover:opacity-100" />
               </a>
-              <p className="text-white/70 text-xs">{work.title}</p>
+              <p className="text-white/70 text-xs">{work.company}</p>
               <p className="mt-0.5 font-mono text-[10px] text-white/45 uppercase tracking-wider">
                 {work.start} to {work.end ?? "Present"} · {work.location}
               </p>
@@ -159,6 +159,21 @@ function ExperienceContent({ activeItem, accent, onItemHover }: ItemProps) {
           <p className="mt-3 text-pretty text-white/70 text-xs leading-relaxed">
             {work.description}
           </p>
+          <ul className="mt-3 space-y-2">
+            {work.highlights.map((highlight) => (
+              <li
+                className="flex gap-2 text-pretty text-white/70 text-xs leading-relaxed"
+                key={highlight}
+              >
+                <span
+                  aria-hidden="true"
+                  className="mt-1.5 size-1 shrink-0 rounded-full"
+                  style={{ backgroundColor: accent }}
+                />
+                {highlight}
+              </li>
+            ))}
+          </ul>
         </ItemCard>
       ))}
     </div>
@@ -189,6 +204,65 @@ function SkillsContent() {
   );
 }
 
+type Project = (typeof DATA.projects)[number];
+
+/** Screenshot or video when one exists; otherwise the headline result. */
+function ProjectMedia({
+  project,
+  accent,
+}: {
+  project: Project;
+  accent: string;
+}) {
+  if (project.video || project.image) {
+    return (
+      <a
+        className="block overflow-hidden rounded-lg border border-white/10"
+        href={project.href}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        {project.video ? (
+          <video
+            autoPlay
+            className="h-36 w-full object-cover object-top"
+            loop
+            muted
+            playsInline
+            src={project.video}
+          />
+        ) : (
+          <Image
+            alt={project.title}
+            className="h-36 w-full object-cover object-top"
+            height={300}
+            src={project.image}
+            width={500}
+          />
+        )}
+      </a>
+    );
+  }
+  if (!project.metric) {
+    return null;
+  }
+  return (
+    <div
+      className="flex items-center gap-3 rounded-lg border border-white/10 px-4 py-3"
+      style={{
+        background: `linear-gradient(120deg, ${accent}26, transparent 70%)`,
+      }}
+    >
+      <span className="shrink-0 font-bold text-3xl text-white tracking-tight">
+        {project.metric.value}
+      </span>
+      <span className="text-white/65 text-xs leading-snug">
+        {project.metric.label}
+      </span>
+    </div>
+  );
+}
+
 function ProjectsContent({ activeItem, accent, onItemHover }: ItemProps) {
   return (
     <div className="space-y-3">
@@ -199,32 +273,7 @@ function ProjectsContent({ activeItem, accent, onItemHover }: ItemProps) {
           key={project.title}
           onHover={(hovered) => onItemHover(hovered ? index : null)}
         >
-          <a
-            className="block overflow-hidden rounded-lg border border-white/10"
-            href={project.href}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            {project.video ? (
-              <video
-                autoPlay
-                className="h-36 w-full object-cover object-top"
-                loop
-                muted
-                playsInline
-                src={project.video}
-              />
-            ) : null}
-            {project.image ? (
-              <Image
-                alt={project.title}
-                className="h-36 w-full object-cover object-top"
-                height={300}
-                src={project.image}
-                width={500}
-              />
-            ) : null}
-          </a>
+          <ProjectMedia accent={accent} project={project} />
           <div className="mt-3 flex items-baseline justify-between gap-2">
             <h3 className="font-semibold text-sm text-white">
               {project.title}
@@ -239,6 +288,14 @@ function ProjectsContent({ activeItem, accent, onItemHover }: ItemProps) {
             </p>
           ) : null}
           <div className="mt-3 flex flex-wrap gap-1">
+            {project.closedSource ? (
+              <span
+                className="rounded-full border px-2 py-0.5 font-mono text-[10px] uppercase tracking-wider"
+                style={{ borderColor: accent, color: accent }}
+              >
+                {project.org} · Closed source
+              </span>
+            ) : null}
             {project.technologies.map((tech) => (
               <Chip key={tech}>{tech}</Chip>
             ))}

@@ -298,6 +298,8 @@ type MoonProps = {
 const MOON_BASE_SPEED = 0.5;
 const MOON_PHASE_STEP = 2.3;
 const MOON_HIT_SCALE = 2.4;
+/** Busier worlds only label the moon being hovered or read about. */
+const MAX_ALWAYS_LABELLED = 4;
 
 function Moon({
   body,
@@ -565,7 +567,10 @@ export function Planet({
             index={index}
             key={label}
             label={label}
-            labelVisible={focused}
+            labelVisible={
+              focused &&
+              (body.moons.length <= MAX_ALWAYS_LABELLED || activeItem === index)
+            }
             onSelect={onSelect}
           />
         ))}

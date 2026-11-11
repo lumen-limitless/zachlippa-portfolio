@@ -53,13 +53,18 @@ export type Body = {
 
 const MOON_ORBIT_BASE = 1.9;
 const MOON_ORBIT_STEP = 0.6;
+const MOON_ORBIT_SPAN = 2.4;
 const MOON_SIZE = 0.17;
 const VIEW_RADIUS_FACTOR = 6;
 const VIEW_EXTENT_FACTOR = 3.5;
 const RING_OUTER = 2.4;
 
+/** Moon orbits pack closer together as a world gains more of them. */
+const moonOrbitStep = (moonCount: number): number =>
+  Math.min(MOON_ORBIT_STEP, MOON_ORBIT_SPAN / Math.max(moonCount - 1, 1));
+
 export const moonOrbitRadius = (body: Body, index: number): number =>
-  body.radius * (MOON_ORBIT_BASE + index * MOON_ORBIT_STEP);
+  body.radius * (MOON_ORBIT_BASE + index * moonOrbitStep(body.moons.length));
 
 export const moonRadius = (body: Body): number => body.radius * MOON_SIZE;
 
@@ -70,7 +75,7 @@ const viewDistance = (
 ): number => {
   const moonExtent =
     moonCount > 0
-      ? radius * (MOON_ORBIT_BASE + (moonCount - 1) * MOON_ORBIT_STEP)
+      ? radius * (MOON_ORBIT_BASE + (moonCount - 1) * moonOrbitStep(moonCount))
       : 0;
   const ringExtent = ring ? radius * RING_OUTER : 0;
   const extent = Math.max(moonExtent, ringExtent);
@@ -118,7 +123,7 @@ export function buildBodies(posts: readonly PostSummary[]): Body[] {
       glow: "#ff6b35",
       ring: false,
       note: 174.61,
-      moons: DATA.work.map((work) => work.company),
+      moons: DATA.work.map((work) => work.title),
       satellites: [],
     },
     {
@@ -148,7 +153,7 @@ export function buildBodies(posts: readonly PostSummary[]): Body[] {
       tagline: "Shipped worlds",
       kind: "planet",
       radius: 4,
-      orbitRadius: 76,
+      orbitRadius: 86,
       orbitSpeed: 0.03,
       phase: 4.1,
       inclination: 0.06,
@@ -168,7 +173,7 @@ export function buildBodies(posts: readonly PostSummary[]): Body[] {
       tagline: "Transmissions from the field",
       kind: "planet",
       radius: 3,
-      orbitRadius: 94,
+      orbitRadius: 112,
       orbitSpeed: 0.022,
       phase: 5.5,
       inclination: -0.07,
@@ -188,7 +193,7 @@ export function buildBodies(posts: readonly PostSummary[]): Body[] {
       tagline: "Open a channel",
       kind: "planet",
       radius: 3.4,
-      orbitRadius: 116,
+      orbitRadius: 134,
       orbitSpeed: 0.016,
       phase: 1.5,
       inclination: 0.04,
