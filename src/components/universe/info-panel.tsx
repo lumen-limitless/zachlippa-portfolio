@@ -53,7 +53,7 @@ function ItemCard({ active, accent, children, onHover }: ItemCardProps) {
     // biome-ignore lint/a11y/noNoninteractiveElementInteractions: hover only mirrors a highlight onto the matching moon
     <article
       className={cn(
-        "rounded-xl border bg-white/[0.03] p-4 transition-colors duration-300",
+        "rounded-xl border bg-white/3 p-4 transition-colors duration-300",
         active ? "bg-white/[0.07]" : "border-white/10"
       )}
       onMouseEnter={() => onHover(true)}
@@ -206,7 +206,7 @@ function SkillsContent() {
       <ul className="grid grid-cols-2 gap-2">
         {DATA.skills.map((skill, index) => (
           <li
-            className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-sm text-white/85"
+            className="flex items-center gap-2 rounded-lg border border-white/10 bg-white/3 px-3 py-2 text-sm text-white/85"
             key={skill}
           >
             <span className="font-mono text-[10px] text-white/35">

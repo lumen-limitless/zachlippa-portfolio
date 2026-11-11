@@ -214,7 +214,7 @@ export function NavRail({ bodies, focusId, onSelect, onStep }: NavRailProps) {
         >
           <ChevronLeft className="size-4" />
         </button>
-        <ul className="flex items-center gap-1 overflow-x-auto [scrollbar-width:none]">
+        <ul className="flex items-center gap-1 overflow-x-auto scrollbar-none">
           <li>
             <button
               aria-current={focusId === null}

@@ -8,7 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run dev` - Start development server at localhost:3000
 - `npm run build` - Build production bundle
 - `npm run start` - Start production server
-- `npm run lint` - Run ESLint for code quality checks
+- `npm run lint` - Run Ultracite (Biome) checks
+- `npm run typecheck` - Type-check with `tsc --noEmit` (the build also fails on type errors)
 
 ### Package Management
 This project uses pnpm but also supports npm. Use `pnpm install` or `npm install` for installing dependencies.
@@ -16,11 +17,11 @@ This project uses pnpm but also supports npm. Use `pnpm install` or `npm install
 ## Architecture Overview
 
 ### Tech Stack
-- **Framework**: Next.js 14 with App Router
-- **Styling**: TailwindCSS with custom theme configuration
+- **Framework**: Next.js 16 with App Router, React 19, TypeScript 7
+- **Styling**: Tailwind CSS 4, configured in CSS (`src/app/globals.css`), with tw-animate-css and the typography plugin
 - **UI Components**: shadcn/ui and Magic UI components
 - **Content**: MDX for blog posts with syntax highlighting via rehype-pretty-code and shiki
-- **Animation**: Framer Motion for page transitions and effects
+- **Animation**: Motion (`motion/react`) for page transitions and effects
 - **3D**: three.js via @react-three/fiber, drei and postprocessing for the universe home page
 - **Audio**: Procedural Web Audio soundscape (no audio assets)
 - **Analytics**: Vercel Analytics integration
@@ -48,8 +49,8 @@ The home page (`/`) is an interactive 3D solar system; the original scrolling pa
 - The scene is loaded client-only (`next/dynamic`, `ssr: false`); devices without WebGL are redirected to `/classic`
 
 ### Key Configuration Files
-- `next.config.mjs` - Next.js config with TypeScript/ESLint error ignoring enabled
-- `tailwind.config.ts` - Extended Tailwind configuration with custom colors, animations, typography plugin
+- `next.config.ts` - Next.js config. Type errors fail the build; do not re-enable `ignoreBuildErrors`
+- `src/app/globals.css` - Tailwind 4 theme (`@theme inline`), dark variant, plugins and code block styles. There is no `tailwind.config` file
 - `components.json` - shadcn/ui component configuration
 
 ### Data Architecture
@@ -66,7 +67,7 @@ All portfolio content updates should be made in the resume.tsx file rather than 
 ### Component Patterns
 - Components use TypeScript with strict mode enabled
 - UI components follow shadcn/ui patterns with cn() utility for className merging
-- Animation components use Framer Motion with BlurFade effects
+- Animation components use Motion with BlurFade effects
 - MDX components handle blog post rendering with syntax highlighting
 
 ### Blog System
