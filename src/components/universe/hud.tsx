@@ -122,7 +122,7 @@ export function TopBar({
         <p className="font-bold text-sm text-white uppercase tracking-[0.3em]">
           {DATA.name}
         </p>
-        <p className="mt-0.5 hidden font-mono text-[10px] text-white/50 uppercase tracking-[0.2em] sm:block">
+        <p className="mt-0.5 hidden font-mono text-[10px] text-white/50 uppercase tracking-[0.2em] sm:block sm:max-w-xs lg:max-w-md">
           {DATA.description}
         </p>
       </div>

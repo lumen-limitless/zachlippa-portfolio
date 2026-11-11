@@ -22,10 +22,10 @@ export const metadata: Metadata = {
   keywords: [
     "Zach Lippa",
     "Zachary Lippa",
-    "Full-Stack Developer",
     "Software Engineer",
     "Portfolio",
     "AI Engineer",
+    "Solutions Architect",
     "AI Agents",
     "MCP",
     "ERP Integration",
