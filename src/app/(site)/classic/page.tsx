@@ -50,9 +50,9 @@ export default function Page() {
           <h2 className="font-bold text-xl">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown className="prose dark:prose-invert max-w-full text-pretty font-sans text-muted-foreground text-sm">
-            {DATA.summary}
-          </Markdown>
+          <div className="prose dark:prose-invert max-w-full text-pretty font-sans text-muted-foreground text-sm">
+            <Markdown>{DATA.summary}</Markdown>
+          </div>
         </BlurFade>
       </section>
       <section id="work">
