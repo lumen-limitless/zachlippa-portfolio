@@ -98,20 +98,20 @@ export const DATA = {
     },
     {
       company: "Lumen Limitless LLC",
-      href: "",
+      href: "https://lumenlimitless.com",
       badges: [],
       location: "Rochester, NY",
       title: "Founder",
-      logoUrl: "",
+      logoUrl: "/lumen.png",
       start: "2026",
       end: "Present",
       description:
-        "My own AI automation studio. It replaces repetitive, rule-heavy operations work with automation that runs unattended, and ships the software products that come out of that work.",
+        "My own AI automation studio for local service businesses. It sets up and runs the AI receptionist, missed-call text-back, appointment reminders, and review requests that keep a shop booked, and ships the software products that come out of that work.",
       highlights: [
         "Built and launched Spinveri, an Instagram giveaway picker whose commit-reveal draw anyone can verify, with Stripe billing and Meta's official Instagram API",
-        "Design AI automations on Claude and n8n that are wired into the tools a team already uses and handed over with the source code",
-        "Built a dependency-free embeddable AI chat widget backed by n8n workflows",
-        "Run the studio on one multi-tenant platform: a single repository, CI pipeline, and deploy path for client delivery and products",
+        "Built a voice receptionist that answers calls and books, reschedules, and cancels appointments, with a live demo visitors can talk to on the company site",
+        "Set up and run managed booking and follow-up systems on a shop's existing phone number and calendar, adding custom automations on Claude and n8n where an off-the-shelf platform falls short",
+        "Scope, build, and support every engagement personally, from the first call through tuning after go-live",
       ],
     },
     {
@@ -210,7 +210,7 @@ export const DATA = {
           icon: <Icons.globe className="size-3" />,
         },
       ],
-      image: "",
+      image: "/spinveri.webp",
       video: "",
     },
     {
@@ -311,7 +311,7 @@ export const DATA = {
       href: "",
       dates: "2025",
       active: true,
-      org: "",
+      org: "Lumen Limitless",
       closedSource: false,
       metric: null,
       description:

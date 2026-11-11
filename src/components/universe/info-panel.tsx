@@ -118,6 +118,9 @@ function AboutContent() {
   );
 }
 
+/** Entries in `resume.tsx` are literal types, so optional fields are checked as plain strings. */
+const hasValue = (value: string): boolean => value.length > 0;
+
 type ItemProps = Pick<InfoPanelProps, "activeItem" | "onItemHover"> & {
   accent: string;
 };
@@ -133,7 +136,7 @@ function ExperienceContent({ activeItem, accent, onItemHover }: ItemProps) {
           onHover={(hovered) => onItemHover(hovered ? index : null)}
         >
           <div className="flex items-start gap-3">
-            {work.logoUrl ? (
+            {hasValue(work.logoUrl) ? (
               <Image
                 alt={work.company}
                 className="size-10 rounded-full border border-white/15 bg-white object-contain"
@@ -150,7 +153,7 @@ function ExperienceContent({ activeItem, accent, onItemHover }: ItemProps) {
               </span>
             )}
             <div className="min-w-0 flex-1">
-              {work.href ? (
+              {hasValue(work.href) ? (
                 <a
                   className="group flex items-center gap-1 font-semibold text-sm text-white"
                   href={work.href}
