@@ -97,6 +97,24 @@ export const DATA = {
       ],
     },
     {
+      company: "Lumen Limitless LLC",
+      href: "",
+      badges: [],
+      location: "Rochester, NY",
+      title: "Founder",
+      logoUrl: "",
+      start: "2026",
+      end: "Present",
+      description:
+        "My own AI automation studio. It replaces repetitive, rule-heavy operations work with automation that runs unattended, and ships the software products that come out of that work.",
+      highlights: [
+        "Built and launched Spinveri, an Instagram giveaway picker whose commit-reveal draw anyone can verify, with Stripe billing and Meta's official Instagram API",
+        "Design AI automations on Claude and n8n that are wired into the tools a team already uses and handed over with the source code",
+        "Built a dependency-free embeddable AI chat widget backed by n8n workflows",
+        "Run the studio on one multi-tenant platform: a single repository, CI pipeline, and deploy path for client delivery and products",
+      ],
+    },
+    {
       company: "Izzo Golf, Inc.",
       href: "https://dub.sh/dHEXAc4",
       badges: [],

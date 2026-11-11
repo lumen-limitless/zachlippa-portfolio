@@ -133,23 +133,36 @@ function ExperienceContent({ activeItem, accent, onItemHover }: ItemProps) {
           onHover={(hovered) => onItemHover(hovered ? index : null)}
         >
           <div className="flex items-start gap-3">
-            <Image
-              alt={work.company}
-              className="size-10 rounded-full border border-white/15 bg-white object-contain"
-              height={40}
-              src={work.logoUrl}
-              width={40}
-            />
-            <div className="min-w-0 flex-1">
-              <a
-                className="group flex items-center gap-1 font-semibold text-sm text-white"
-                href={work.href}
-                rel="noopener noreferrer"
-                target="_blank"
+            {work.logoUrl ? (
+              <Image
+                alt={work.company}
+                className="size-10 rounded-full border border-white/15 bg-white object-contain"
+                height={40}
+                src={work.logoUrl}
+                width={40}
+              />
+            ) : (
+              <span
+                aria-hidden="true"
+                className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/10 font-semibold text-sm text-white"
               >
-                {work.title}
-                <ArrowUpRight className="size-3.5 opacity-50 transition-opacity group-hover:opacity-100" />
-              </a>
+                {work.company.slice(0, 1)}
+              </span>
+            )}
+            <div className="min-w-0 flex-1">
+              {work.href ? (
+                <a
+                  className="group flex items-center gap-1 font-semibold text-sm text-white"
+                  href={work.href}
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {work.title}
+                  <ArrowUpRight className="size-3.5 opacity-50 transition-opacity group-hover:opacity-100" />
+                </a>
+              ) : (
+                <p className="font-semibold text-sm text-white">{work.title}</p>
+              )}
               <p className="text-white/70 text-xs">{work.company}</p>
               <p className="mt-0.5 font-mono text-[10px] text-white/45 uppercase tracking-wider">
                 {work.start} to {work.end ?? "Present"} · {work.location}
