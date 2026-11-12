@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
@@ -57,7 +57,7 @@ export const ResumeCard = ({
             <AvatarFallback>{altText[0]}</AvatarFallback>
           </Avatar>
         </div>
-        <div className="group ml-4 flex-grow flex-col items-center">
+        <div className="group ml-4 grow flex-col items-center">
           <CardHeader>
             <div className="flex items-center justify-between gap-x-2 text-base">
               <h3 className="inline-flex items-center justify-center font-semibold text-xs leading-none sm:text-sm">

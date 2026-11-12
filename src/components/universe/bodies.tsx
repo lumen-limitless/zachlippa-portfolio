@@ -124,7 +124,7 @@ function Label({
     >
       <button
         className={cn(
-          "group flex select-none flex-col items-center whitespace-nowrap rounded-full border border-white/10 bg-black/40 font-mono uppercase backdrop-blur-sm transition-all duration-500 hover:border-white/40 hover:bg-black/70",
+          "group flex select-none flex-col items-center whitespace-nowrap rounded-full border border-white/10 bg-black/40 font-mono uppercase backdrop-blur-xs transition-all duration-500 hover:border-white/40 hover:bg-black/70",
           compact
             ? "px-2 py-0.5 text-[9px] tracking-[0.18em]"
             : "px-3 py-1 text-[10px] tracking-[0.28em]",
@@ -406,7 +406,7 @@ function Satellites({ body, visible }: { body: Body; visible: boolean }) {
                 style={{ pointerEvents: "none" }}
                 zIndexRange={LABEL_Z_RANGE}
               >
-                <span className="select-none whitespace-nowrap rounded-full border border-white/10 bg-black/50 px-2 py-0.5 font-mono text-[9px] text-white/85 uppercase tracking-[0.16em] backdrop-blur-sm">
+                <span className="select-none whitespace-nowrap rounded-full border border-white/10 bg-black/50 px-2 py-0.5 font-mono text-[9px] text-white/85 uppercase tracking-[0.16em] backdrop-blur-xs">
                   {name}
                 </span>
               </Html>
